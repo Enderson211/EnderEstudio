@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Copiando...</title>
+</head>
+<body>
+    <script>
+        // Obtener el texto desde la URL (ej: misitio.com/?t=TextoACopiar)
+        const urlParams = new URLSearchParams(window.location.search);
+        const textToCopy = urlParams.get('t');
+
+        if (textToCopy) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert("Copiado al portapapeles: " + textToCopy);
+                window.close(); // Intenta cerrar la pestaña
+            });
+        }
+    </script>
+</body>
+</html>
