@@ -1,20 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Copiando...</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            background-color: #0e0e0e; 
+            color: white;
+        }
+        .container { 
+            text-align: center; 
+            padding: 30px; 
+            border: 1px solid #333; 
+            border-radius: 20px; 
+            background: #1a1a1a;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        button { 
+            background: #00c8ff; 
+            color: black; 
+            border: none; 
+            padding: 15px 30px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-size: 18px; 
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover { background: #008fb3; transform: scale(1.05); }
+        .msg { margin-bottom: 20px; font-size: 14px; color: #aaa; }
+    </style>
 </head>
 <body>
-    <script>
-        // Obtener el texto desde la URL (ej: misitio.com/?t=TextoACopiar)
-        const urlParams = new URLSearchParams(window.location.search);
-        const textToCopy = urlParams.get('t');
 
-        if (textToCopy) {
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                alert("Copiado al portapapeles: " + textToCopy);
-                window.close(); // Intenta cerrar la pestaña
-            });
+    <div class="container">
+        <div class="msg" id="mensaje">Haz clic para copiar el contenido</div>
+        <button id="btnCopiar">COPIAR AHORA</button>
+    </div>
+
+    <script>
+        // 1. OBTENER EL TEXTO DE LA URL
+        const params = new URLSearchParams(window.location.search);
+        
+        // 2. TEXTO POR DEFECTO (Si no pones nada en el link de Canva)
+        let textoFinal = params.get('t');
+        
+        if (!textoFinal) {
+            textoFinal = "04241586828"; 
         }
+
+        const boton = document.getElementById('btnCopiar');
+        const info = document.getElementById('mensaje');
+
+        // 3. ACCIÓN DE COPIAR AL HACER CLIC
+        boton.addEventListener('click', () => {
+            navigator.clipboard.writeText(textoFinal).then(() => {
+                info.innerText = "¡Copiado correctamente!";
+                boton.innerText = "✓ LISTO";
+                boton.style.background = "#00ff88";
+                
+                // Se cierra la pestaña solo tras copiar
+                setTimeout(() => {
+                    window.close();
+                }, 1000);
+            }).catch(err => {
+                info.innerText = "Error al copiar. Usa un navegador moderno.";
+            });
+        });
     </script>
+
 </body>
 </html>
