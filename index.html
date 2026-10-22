@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Defensa de Inglés 2do Año | Enderson & Yorman</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#090d16',
+                        glasscard: 'rgba(15, 23, 42, 0.75)',
+                        borderglow: 'rgba(255, 255, 255, 0.1)',
+                        neonblue: '#00f0ff',
+                        neongreen: '#10b981',
+                        neonpurple: '#a855f7',
+                        neongold: '#fbbf24'
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite alternate',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(0, 240, 255, 0.2)' },
+                            '100%': { boxShadow: '0 0 35px rgba(0, 240, 255, 0.6)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-6px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at top center, #1e1b4b 0%, #0f172a 50%, #090d16 100%);
+            background-attachment: fixed;
+            color: #f8fafc;
+        }
+
+        /* Glassmorphism card effect */
+        .glass-box {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-box-blue {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+        }
+
+        .glass-box-green {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+        }
+
+        /* Practice mode text blur */
+        .practice-blur {
+            filter: blur(7px);
+            user-select: none;
+            transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .practice-blur:hover {
+            filter: blur(0px);
+        }
+
+        /* Neon Glowing Buttons */
+        .btn-neon-blue {
+            background: linear-gradient(135deg, #00f0ff 0%, #3b82f6 100%);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            color: #090d16;
+            font-weight: 700;
+        }
+        .btn-neon-blue:hover {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .btn-neon-green {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+            color: #090d16;
+            font-weight: 700;
+        }
+        .btn-neon-green:hover {
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .btn-gradient-purple {
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }
+        .btn-gradient-purple:hover {
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.7);
+            transform: translateY(-2px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-3 sm:p-6 md:p-8">
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto w-full">
+
+        <!-- HEADER SECTION -->
+        <header class="text-center my-6 relative">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-cyan-400 text-xs sm:text-sm font-semibold mb-4 backdrop-blur-md shadow-lg shadow-indigo-500/10 animate-float">
+                <i class="fa-solid fa-sparkles text-cyan-300"></i> GUÍA PROFESIONAL DE DEFENSA 2026
+            </div>
+            
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-emerald-400 drop-shadow-sm">
+                INGLÉS 2<sup>do</sup> AÑO
+            </h1>
+            <p class="text-slate-400 mt-2 text-base sm:text-xl font-medium max-w-2xl mx-auto">
+                Verbo <span class="text-cyan-400 font-bold underline decoration-cyan-500/50">To Be</span> & Pronombres Personales
+            </p>
+
+            <!-- Student Badges -->
+            <div class="flex flex-wrap justify-center items-center gap-3 mt-6">
+                <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 border border-cyan-500/30 text-slate-200 text-sm font-semibold shadow-md">
+                    <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
+                    Persona 1: <span class="text-cyan-300 font-bold">Enderson Soto</span>
+                </div>
+                <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 border border-emerald-500/30 text-slate-200 text-sm font-semibold shadow-md">
+                    <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Persona 2: <span class="text-emerald-300 font-bold">Yorman Colmenares</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- INTERACTIVE TOOLBAR -->
+        <div class="glass-box p-4 sm:p-5 rounded-2xl mb-8 border border-white/10 shadow-2xl flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-2 text-slate-300 font-semibold text-sm">
+                <i class="fa-solid fa-sliders text-cyan-400 text-lg"></i>
+                <span>Controles Rápidos:</span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+                <!-- Copy All Button -->
+                <button onclick="copyFullScript()" class="btn-gradient-purple text-white px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all active:scale-95 flex-1 sm:flex-initial">
+                    <i class="fa-solid fa-copy"></i>
+                    <span>Copiar Guion Completo</span>
+                </button>
+
+                <!-- Practice Mode Toggle Button -->
+                <button onclick="togglePracticeMode()" id="practice-btn" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/40 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all active:scale-95 flex-1 sm:flex-initial">
+                    <i class="fa-solid fa-eye-slash" id="practice-icon"></i>
+                    <span id="practice-text">Ocultar Texto (Modo Estudio)</span>
+                </button>
+
+                <!-- Speech Audio Synthesizer Button -->
+                <button onclick="toggleGlobalSpeech()" id="speech-btn" class="bg-indigo-950 hover:bg-indigo-900 text-indigo-300 border border-indigo-500/50 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all active:scale-95 flex-1 sm:flex-initial">
+                    <i class="fa-solid fa-volume-high" id="speech-icon"></i>
+                    <span id="speech-text">Escuchar Exposición Completa</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- MAIN CARDS GRID (ENDERSON vs YORMAN) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-10">
+
+            <!-- CARD 1: ENDERSON SOTO (PERSONA 1) -->
+            <div class="glass-box-blue rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-300">
+                <div>
+                    <!-- Header Persona 1 -->
+                    <div class="p-5 sm:p-6 bg-gradient-to-r from-cyan-950/80 via-indigo-950/60 to-slate-900 border-b border-cyan-500/30 flex justify-between items-center">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-300 text-xl font-black shadow-inner">
+                                P1
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-cyan-400">Persona 1</span>
+                                <h2 class="text-xl sm:text-2xl font-extrabold text-white">Enderson Soto</h2>
+                            </div>
+                        </div>
+                        <button onclick="speakText('script-enderson')" class="bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 p-3 rounded-xl border border-cyan-400/40 transition active:scale-90" title="Escuchar a Enderson">
+                            <i class="fa-solid fa-circle-play text-lg"></i>
+                        </button>
+                    </div>
+
+                    <!-- Body Persona 1 -->
+                    <div id="script-enderson" class="p-5 sm:p-7 space-y-6">
+                        
+                        <!-- Paso 1 -->
+                        <div class="bg-slate-900/60 p-4 sm:p-5 rounded-2xl border border-cyan-500/20">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase">Paso 1</span>
+                                <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock me-1"></i>0:15 min</span>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-hand-wave text-cyan-400"></i> Saludo e Introducción
+                            </h3>
+                            <p class="script-content text-slate-300 leading-relaxed text-sm sm:text-base font-normal">
+                                "Buenas tardes, profesor(a). Nosotros le vamos a defender el contenido número 1 sobre el <strong class="text-cyan-300 font-semibold">Verbo To Be</strong> y los <strong class="text-cyan-300 font-semibold">Pronombres Personales</strong>."
+                            </p>
+                        </div>
+
+                        <!-- Paso 2 -->
+                        <div class="bg-slate-900/60 p-4 sm:p-5 rounded-2xl border border-cyan-500/20">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase">Paso 2</span>
+                                <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock me-1"></i>0:20 min</span>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-question text-cyan-400"></i> ¿Qué es el Verbo To Be?
+                            </h3>
+                            <p class="script-content text-slate-300 leading-relaxed text-sm sm:text-base font-normal">
+                                "El verbo To Be significa <strong class="text-cyan-300 font-bold">SER</strong> o <strong class="text-cyan-300 font-bold">ESTAR</strong>. Es un verbo irregular porque cambia su forma según la persona con la que se combine."
+                            </p>
+                        </div>
+
+                        <!-- Paso 3 -->
+                        <div class="bg-slate-900/60 p-4 sm:p-5 rounded-2xl border border-cyan-500/20">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase">Paso 3</span>
+                                <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock me-1"></i>0:30 min</span>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-diagram-project text-cyan-400"></i> Conjugación (Presente)
+                            </h3>
+                            <div class="script-content text-slate-300 leading-relaxed text-sm sm:text-base space-y-2">
+                                <p>"Se divide en tres formas principales:"</p>
+                                <ul class="space-y-2 pt-1">
+                                    <li class="bg-slate-950/80 p-2.5 rounded-xl border border-cyan-500/30 flex items-center justify-between">
+                                        <span>Para <strong class="text-white">I</strong> (Yo)</span>
+                                        <span class="px-3 py-1 bg-cyan-400 text-slate-950 font-black rounded-lg text-xs">AM</span>
+                                    </li>
+                                    <li class="bg-slate-950/80 p-2.5 rounded-xl border border-cyan-500/30 flex items-center justify-between">
+                                        <span>Para <strong class="text-white">He, She, It</strong> (Él, Ella, Eso)</span>
+                                        <span class="px-3 py-1 bg-cyan-400 text-slate-950 font-black rounded-lg text-xs">IS</span>
+                                    </li>
+                                    <li class="bg-slate-950/80 p-2.5 rounded-xl border border-cyan-500/30 flex items-center justify-between">
+                                        <span>Para <strong class="text-white">You, We, They</strong> (Tú, Nos., Ellos)</span>
+                                        <span class="px-3 py-1 bg-cyan-400 text-slate-950 font-black rounded-lg text-xs">ARE</span>
+                                    </li>
+                                </ul>
+                                <p class="text-xs text-slate-400 italic pt-2">
+                                    *(Pase de micrófono)*: "Ahora mi compañero Yorman les va a explicar la estructura de las oraciones."
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Footer Action Persona 1 -->
+                <div class="p-5 bg-slate-950/80 border-t border-cyan-500/30">
+                    <button onclick="copyScript('enderson')" class="btn-neon-blue w-full py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base transition active:scale-95">
+                        <i class="fa-solid fa-copy"></i> Copiar Guion de Enderson
+                    </button>
+                </div>
+            </div>
+
+            <!-- CARD 2: YORMAN COLMENARES (PERSONA 2) -->
+            <div class="glass-box-green rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-300">
+                <div>
+                    <!-- Header Persona 2 -->
+                    <div class="p-5 sm:p-6 bg-gradient-to-r from-emerald-950/80 via-teal-950/60 to-slate-900 border-b border-emerald-500/30 flex justify-between items-center">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-300 text-xl font-black shadow-inner">
+                                P2
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Persona 2</span>
+                                <h2 class="text-xl sm:text-2xl font-extrabold text-white">Yorman Colmenares</h2>
+                            </div>
+                        </div>
+                        <button onclick="speakText('script-yorman')" class="bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-300 p-3 rounded-xl border border-emerald-400/40 transition active:scale-90" title="Escuchar a Yorman">
+                            <i class="fa-solid fa-circle-play text-lg"></i>
+                        </button>
+                    </div>
+
+                    <!-- Body Persona 2 -->
+                    <div id="script-yorman" class="p-5 sm:p-7 space-y-6">
+                        
+                        <!-- Paso 1 -->
+                        <div class="bg-slate-900/60 p-4 sm:p-5 rounded-2xl border border-emerald-500/20">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase">Paso 1</span>
+                                <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock me-1"></i>0:35 min</span>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-pen-ruler text-emerald-400"></i> Estructura de Oraciones
+                            </h3>
+                            <div class="script-content text-slate-300 leading-relaxed text-sm sm:text-base space-y-2">
+                                <p>"Para armar las oraciones tenemos tres formas:"</p>
+                                <div class="space-y-2 pt-1">
+                                    <div class="bg-slate-950/80 p-3 rounded-xl border border-emerald-500/30">
+                                        <div class="text-emerald-400 font-bold text-xs uppercase mb-1">1. Afirmativa</div>
+                                        <p class="text-xs sm:text-sm text-slate-200">Sujeto + Verbo + Complemento</p>
+                                        <p class="text-xs text-emerald-300/80 italic mt-0.5">Ej: "She is nice" (Ella es agradable).</p>
+                                    </div>
+                                    <div class="bg-slate-950/80 p-3 rounded-xl border border-emerald-500/30">
+                                        <div class="text-emerald-400 font-bold text-xs uppercase mb-1">2. Negativa</div>
+                                        <p class="text-xs sm:text-sm text-slate-200">Se agrega la palabra <strong>NOT</strong> después del verbo.</p>
+                                        <p class="text-xs text-emerald-300/80 italic mt-0.5">Ej: "They are not late" (Ellos no están retrasados).</p>
+                                    </div>
+                                    <div class="bg-slate-950/80 p-3 rounded-xl border border-emerald-500/30">
+                                        <div class="text-emerald-400 font-bold text-xs uppercase mb-1">3. Interrogativa (Pregunta)</div>
+                                        <p class="text-xs sm:text-sm text-slate-200">El verbo To Be pasa al <strong>principio</strong>.</p>
+                                        <p class="text-xs text-emerald-300/80 italic mt-0.5">Ej: "Is it ready?" (¿Está listo?).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Paso 2 -->
+                        <div class="bg-slate-900/60 p-4 sm:p-5 rounded-2xl border border-emerald-500/20">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase">Paso 2</span>
+                                <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock me-1"></i>0:20 min</span>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-bullseye text-emerald-400"></i> Usos Comunes
+                            </h3>
+                            <p class="script-content text-slate-300 leading-relaxed text-sm sm:text-base font-normal">
+                                "Por último, el verbo To Be se usa para dos cosas principales: <strong class="text-emerald-300 font-semibold">describir personas o cosas</strong> (como profesiones o características) e <strong class="text-emerald-300 font-semibold">indicar la ubicación</strong> de las personas u objetos."
+                            </p>
+                        </div>
+
+                        <!-- Paso 3 -->
+                        <div class="bg-slate-900/60 p-4 sm:p-5 rounded-2xl border border-emerald-500/20">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase">Paso 3</span>
+                                <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock me-1"></i>0:05 min</span>
+                            </div>
+                            <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-flag-checkered text-emerald-400"></i> Cierre Final
+                            </h3>
+                            <p class="script-content text-slate-300 leading-relaxed text-sm sm:text-base font-normal">
+                                "Esa fue toda nuestra exposición. Muchas gracias por su atención."
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Footer Action Persona 2 -->
+                <div class="p-5 bg-slate-950/80 border-t border-emerald-500/30">
+                    <button onclick="copyScript('yorman')" class="btn-neon-green w-full py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base transition active:scale-95">
+                        <i class="fa-solid fa-copy"></i> Copiar Guion de Yorman
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PRONUNCIATION & CHEAT SHEET SECTION -->
+        <section class="glass-box rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl mb-12">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-400 text-xl">
+                        <i class="fa-solid fa-microphone-lines"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white">Guía de Pronunciación y Trucos</h3>
+                        <p class="text-xs sm:text-sm text-slate-400">Para sonar bien frente al profesor sin enredarse</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phonetic Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <div class="bg-slate-900/80 p-4 rounded-2xl border border-amber-500/30 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-amber-400 uppercase">Verbo AM</span>
+                        <div class="text-lg font-black text-white">I AM</div>
+                        <div class="text-xs text-slate-400">Pronunciación: <span class="text-amber-300 font-mono font-bold">/am/</span></div>
+                    </div>
+                    <button onclick="speakDirect('am')" class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 hover:bg-amber-500/40 flex items-center justify-center transition active:scale-90">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+
+                <div class="bg-slate-900/80 p-4 rounded-2xl border border-amber-500/30 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-amber-400 uppercase">Verbo IS</span>
+                        <div class="text-lg font-black text-white">He / She / It IS</div>
+                        <div class="text-xs text-slate-400">Pronunciación: <span class="text-amber-300 font-mono font-bold">/iz/</span></div>
+                    </div>
+                    <button onclick="speakDirect('is')" class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 hover:bg-amber-500/40 flex items-center justify-center transition active:scale-90">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+
+                <div class="bg-slate-900/80 p-4 rounded-2xl border border-amber-500/30 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-amber-400 uppercase">Verbo ARE</span>
+                        <div class="text-lg font-black text-white">You / We / They ARE</div>
+                        <div class="text-xs text-slate-400">Pronunciación: <span class="text-amber-300 font-mono font-bold">/ar/</span></div>
+                    </div>
+                    <button onclick="speakDirect('are')" class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 hover:bg-amber-500/40 flex items-center justify-center transition active:scale-90">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- FAQ Accordion -->
+            <h4 class="text-sm font-bold uppercase tracking-wider text-slate-300 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved text-cyan-400"></i> Preguntas Probables del Profesor
+            </h4>
+
+            <div class="space-y-3">
+                <details class="group bg-slate-900/70 rounded-2xl border border-white/10 overflow-hidden">
+                    <summary class="p-4 font-semibold text-sm sm:text-base text-slate-200 cursor-pointer flex justify-between items-center group-open:text-cyan-400 transition">
+                        <span>¿Cómo hago una pregunta usando el verbo To Be?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-4 pt-0 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 bg-slate-950/40">
+                        <strong>Respuesta:</strong> "Profe, para hacer una pregunta simplemente se pasa el verbo To Be (Am, Is o Are) al <strong>principio de la oración</strong>, antes del sujeto. Por ejemplo: <i>Is she happy?</i>"
+                    </div>
+                </details>
+
+                <details class="group bg-slate-900/70 rounded-2xl border border-white/10 overflow-hidden">
+                    <summary class="p-4 font-semibold text-sm sm:text-base text-slate-200 cursor-pointer flex justify-between items-center group-open:text-cyan-400 transition">
+                        <span>¿Por qué se dice que el verbo To Be es 'irregular'?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-4 pt-0 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 bg-slate-950/40">
+                        <strong>Respuesta:</strong> "Porque cambia completamente su forma al conjugarse en presente. No se escribe 'Be' para todos, sino que cambia a <strong>AM, IS o ARE</strong> según la persona."
+                    </div>
+                </details>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-6 border-t border-white/10 text-xs text-slate-500">
+        <p>Aplicación de Estudio para Bachillerato • Creado para Enderson Soto & Yorman Colmenares</p>
+    </footer>
+
+    <!-- JS LOGIC -->
+    <script>
+        const scripts = {
+            enderson: `GUION DE ENDERSON SOTO (PERSONA 1)
+
+1. SALUDO E INTRODUCCIÓN:
+"Buenas tardes, profesor(a). Nosotros le vamos a defender el contenido número 1 sobre el Verbo To Be y los Pronombres Personales."
+
+2. ¿QUÉ ES EL VERBO TO BE?:
+"El verbo To Be significa SER o ESTAR. Es un verbo irregular porque cambia su forma según la persona con la que se combine."
+
+3. CONJUGACIÓN:
+"Se divide en tres formas principales:
+- Para I (Yo) usamos AM.
+- Para He, She, It (Él, Ella, Eso) usamos IS.
+- Para You, We, They (Tú, Nosotros, Ellos) usamos ARE.
+Ahora mi compañero Yorman les va a explicar la estructura de las oraciones."`,
+
+            yorman: `GUION DE YORMAN COLMENARES (PERSONA 2)
+
+1. ESTRUCTURA DE ORACIONES:
+"Para armar las oraciones tenemos tres formas:
+- Afirmativa: Sujeto + Verbo + Complemento. Ejemplo: 'She is nice' (Ella es agradable).
+- Negativa: Se agrega la palabra NOT después del verbo. Ejemplo: 'They are not late' (Ellos no están retrasados).
+- Interrogativa: El verbo To Be pasa al principio. Ejemplo: 'Is it ready?' (¿Está listo?)."
+
+2. USOS COMUNES:
+"Por último, el verbo To Be se usa para dos cosas principales: describir personas o cosas (como profesiones o características) e indicar la ubicación de las personas u objetos."
+
+3. CIERRE FINAL:
+"Esa fue toda nuestra exposición. Muchas gracias por su atención."`
+        };
+
+        let isPracticeMode = false;
+        let isSpeakingGlobal = false;
+
+        // Practice Mode (Blur script texts)
+        function togglePracticeMode() {
+            isPracticeMode = !isPracticeMode;
+            const scriptContents = document.querySelectorAll('.script-content');
+            const btnText = document.getElementById('practice-text');
+            const btnIcon = document.getElementById('practice-icon');
+
+            scriptContents.forEach(el => {
+                if (isPracticeMode) {
+                    el.classList.add('practice-blur');
+                } else {
+                    el.classList.remove('practice-blur');
+                }
+            });
+
+            if (isPracticeMode) {
+                btnText.textContent = "Mostrar Texto (Desactivar Modo Estudio)";
+                btnIcon.className = "fa-solid fa-eye";
+                showToast("Modo Estudio activado: Texto borroso. ¡Pasa el ratón sobre el texto para practicar!", "info");
+            } else {
+                btnText.textContent = "Ocultar Texto (Modo Estudio)";
+                btnIcon.className = "fa-solid fa-eye-slash";
+                showToast("Modo Estudio desactivado.", "info");
+            }
+        }
+
+        // Copy Text Logic
+        function copyToClipboard(text, successMsg) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast(successMsg, "success");
+                }).catch(() => fallbackCopy(text, successMsg));
+            } else {
+                fallbackCopy(text, successMsg);
+            }
+        }
+
+        function fallbackCopy(text, successMsg) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand('copy');
+                showToast(successMsg, "success");
+            } catch (err) {
+                showToast("Error al copiar texto", "error");
+            }
+            document.body.removeChild(ta);
+        }
+
+        function copyScript(person) {
+            if (person === 'enderson') copyToClipboard(scripts.enderson, "¡Guion de Enderson Soto copiado con éxito!");
+            if (person === 'yorman') copyToClipboard(scripts.yorman, "¡Guion de Yorman Colmenares copiado con éxito!");
+        }
+
+        function copyFullScript() {
+            const full = `=========================================
+GUÍA DE DEFENSA - INGLÉS 2DO AÑO
+ESTUDIANTES: ENDERSON SOTO & YORMAN COLMENARES
+=========================================
+
+${scripts.enderson}
+
+-----------------------------------------
+
+${scripts.yorman}
+
+=========================================`;
+            copyToClipboard(full, "¡Guion completo listo para pegar!");
+        }
+
+        // Web Speech API Voice Synthesizer
+        function speakText(containerId) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop current speech
+                const container = document.getElementById(containerId);
+                const text = container.innerText;
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'es-ES';
+                utterance.rate = 0.95; // Slightly slower for clarity
+                window.speechSynthesis.speak(utterance);
+                showToast("Reproduciendo audio...", "info");
+            } else {
+                showToast("Tu navegador no soporta síntesis de voz.", "error");
+            }
+        }
+
+        function speakDirect(word) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                let text = "";
+                if (word === 'am') text = "I am. Pronunciado como am.";
+                if (word === 'is') text = "He, She, It is. Pronunciado como iz.";
+                if (word === 'are') text = "You, We, They are. Pronunciado como ar.";
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'es-ES';
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function toggleGlobalSpeech() {
+            if ('speechSynthesis' in window) {
+                if (speechSynthesis.speaking) {
+                    speechSynthesis.cancel();
+                    document.getElementById('speech-text').textContent = "Escuchar Exposición Completa";
+                    showToast("Audio detenido.", "info");
+                } else {
+                    const fullText = scripts.enderson + "\n" + scripts.yorman;
+                    const utterance = new SpeechSynthesisUtterance(fullText);
+                    utterance.lang = 'es-ES';
+                    utterance.rate = 0.95;
+                    speechSynthesis.speak(utterance);
+                    document.getElementById('speech-text').textContent = "Detener Audio";
+                    showToast("Reproduciendo la exposición completa...", "info");
+
+                    utterance.onend = () => {
+                        document.getElementById('speech-text').textContent = "Escuchar Exposición Completa";
+                    };
+                }
+            }
+        }
+
+        // Custom Toast Notification
+        function showToast(message, type = "success") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let bgClass = "bg-slate-900 border-cyan-500/50 text-cyan-300";
+            let icon = "fa-circle-check text-cyan-400";
+
+            if (type === "error") {
+                bgClass = "bg-rose-950 border-rose-500/50 text-rose-300";
+                icon = "fa-circle-xmark text-rose-400";
+            } else if (type === "info") {
+                bgClass = "bg-indigo-950 border-indigo-500/50 text-indigo-300";
+                icon = "fa-circle-info text-indigo-400";
+            }
+
+            toast.className = `${bgClass} border backdrop-blur-xl px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-semibold pointer-events-auto transform translate-x-5 opacity-0 transition-all duration-300`;
+            toast.innerHTML = `<i class="fa-solid ${icon} text-base"></i><span>${message}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-x-5', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-x-5');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
